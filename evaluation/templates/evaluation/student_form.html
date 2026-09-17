@@ -1,0 +1,177 @@
+{% extends "evaluation/base.html" %}
+
+{% block title %}Add Student | Unit 3 Review{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <h1>Add Student</h1>
+    <p>Enter student details and Unit 3 evaluation marks</p>
+</div>
+
+<div class="content-box">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <h2 style="margin-bottom:20px;">Student Information</h2>
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:20px;
+        ">
+
+            <div>
+                <label>Roll Number</label>
+                <input
+                    type="text"
+                    name="roll_number"
+                    required
+                    placeholder="Example: 01"
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+            </div>
+
+            <div>
+                <label>Student Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Enter student name"
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+            </div>
+
+            <div>
+                <label>Register Number</label>
+                <input
+                    type="text"
+                    name="register_number"
+                    required
+                    placeholder="Enter register number"
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+            </div>
+
+            <div>
+                <label>Department</label>
+                <input
+                    type="text"
+                    name="department"
+                    required
+                    placeholder="Example: CSE"
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+            </div>
+
+            <div>
+                <label>Section</label>
+                <input
+                    type="text"
+                    name="section"
+                    required
+                    placeholder="Example: A"
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+            </div>
+
+        </div>
+
+
+        <h2 style="margin:35px 0 20px;">
+            Evaluation Marks
+        </h2>
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:20px;
+        ">
+
+            <div>
+                <label>Django Installation (1 mark)</label>
+
+                <select
+                    name="django_installation"
+                    required
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+                    <option value="1">1 - Completed</option>
+                    <option value="0">0 - Not Completed</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label>Template Usage (1 mark)</label>
+
+                <select
+                    name="template_usage"
+                    required
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+                    <option value="1">1 - Completed</option>
+                    <option value="0">0 - Not Completed</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label>Model and Views (2 marks)</label>
+
+                <select
+                    name="model_and_views"
+                    required
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+                    <option value="2">2 - Completed</option>
+                    <option value="1">1 - Partial</option>
+                    <option value="0">0 - Not Completed</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label>Output (1 mark)</label>
+
+                <select
+                    name="output"
+                    required
+                    style="width:100%; padding:12px; margin-top:6px;"
+                >
+                    <option value="1">1 - Successful</option>
+                    <option value="0">0 - Not Successful</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div style="margin-top:30px;">
+
+            <button
+                type="submit"
+                class="btn"
+                style="border:none; cursor:pointer;"
+            >
+                Save Student
+            </button>
+
+            <a
+                href="{% url 'student_list' %}"
+                class="btn"
+                style="background:#6b7280; margin-left:10px;"
+            >
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

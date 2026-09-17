@@ -1,0 +1,135 @@
+{% extends "evaluation/base.html" %}
+
+{% block title %}Dashboard | Unit 3 Review{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <h1>Unit 3 App Development Review</h1>
+    <p>Student evaluation dashboard</p>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <div class="card-title">Total Students</div>
+        <div class="card-value">{{ total_students }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Average Marks</div>
+        <div class="card-value">{{ average }} / 5</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Completed</div>
+        <div class="card-value">{{ passed }}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Needs Improvement</div>
+        <div class="card-value">{{ needs_improvement }}</div>
+    </div>
+
+</div>
+
+
+<div class="content-box">
+
+    <div class="content-header">
+
+        <div>
+            <h2>Student Evaluation</h2>
+            <p style="color:#6b7280; margin-top:5px;">
+                Unit 3 practical evaluation results
+            </p>
+        </div>
+
+        <a href="{% url 'add_student' %}" class="btn">
+            + Add Student
+        </a>
+
+    </div>
+
+
+    <div style="overflow-x:auto;">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Roll No.</th>
+                    <th>Student</th>
+                    <th>Django</th>
+                    <th>Template</th>
+                    <th>Model & Views</th>
+                    <th>Output</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>
+                        {{ student.roll_number }}
+                    </td>
+
+                    <td>
+                        <strong>{{ student.name }}</strong>
+                    </td>
+
+                    <td>
+                        {{ student.django_installation }}/1
+                    </td>
+
+                    <td>
+                        {{ student.template_usage }}/1
+                    </td>
+
+                    <td>
+                        {{ student.model_and_views }}/2
+                    </td>
+
+                    <td>
+                        {{ student.output }}/1
+                    </td>
+
+                    <td>
+                        <strong>{{ student.total_marks }}/5</strong>
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'student_detail' student.id %}"
+                            class="view-btn"
+                        >
+                            View
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="8" style="text-align:center; padding:30px;">
+                        No students have been added yet.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

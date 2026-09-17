@@ -1,0 +1,101 @@
+{% extends "evaluation/base.html" %}
+
+{% block title %}All Students | Unit 3 Review{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <h1>All Students</h1>
+    <p>View and manage student evaluation records</p>
+</div>
+
+<div class="content-box">
+
+    <div class="content-header">
+        <div>
+            <h2>Student Records</h2>
+            <p style="color:#6b7280; margin-top:5px;">
+                Unit 3 App Development Review
+            </p>
+        </div>
+
+        <a href="{% url 'add_student' %}" class="btn">
+            + Add Student
+        </a>
+    </div>
+
+    <div style="overflow-x:auto;">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Roll No.</th>
+                    <th>Name</th>
+                    <th>Register No.</th>
+                    <th>Department</th>
+                    <th>Section</th>
+                    <th>Total</th>
+                    <th>Percentage</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>{{ student.roll_number }}</td>
+
+                    <td>
+                        <strong>{{ student.name }}</strong>
+                    </td>
+
+                    <td>{{ student.register_number }}</td>
+
+                    <td>{{ student.department }}</td>
+
+                    <td>{{ student.section }}</td>
+
+                    <td>
+                        <strong>{{ student.total_marks }}/5</strong>
+                    </td>
+
+                    <td>
+                        <span class="badge">
+                            {{ student.percentage }}%
+                        </span>
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'student_detail' student.id %}"
+                            class="view-btn"
+                        >
+                            View
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="8" style="text-align:center; padding:30px;">
+                        No student records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

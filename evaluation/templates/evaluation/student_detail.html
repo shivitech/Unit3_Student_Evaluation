@@ -1,0 +1,127 @@
+{% extends "evaluation/base.html" %}
+
+{% block title %}Student Details | Unit 3 Review{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <h1>Student Evaluation</h1>
+    <p>Detailed Unit 3 practical evaluation</p>
+</div>
+
+<div class="content-box">
+
+    <div class="content-header">
+        <div>
+            <h2>{{ student.name }}</h2>
+            <p style="color:#6b7280; margin-top:5px;">
+                Roll No: {{ student.roll_number }}
+            </p>
+        </div>
+
+        <a href="{% url 'student_list' %}" class="btn">
+            ← Back to Students
+        </a>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-title">Register Number</div>
+            <div class="card-value" style="font-size:20px;">
+                {{ student.register_number }}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Department</div>
+            <div class="card-value" style="font-size:20px;">
+                {{ student.department }}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Section</div>
+            <div class="card-value" style="font-size:20px;">
+                {{ student.section }}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Total Score</div>
+            <div class="card-value">
+                {{ student.total_marks }}/5
+            </div>
+        </div>
+
+    </div>
+
+
+    <h2 style="margin:30px 0 15px;">
+        Evaluation Breakdown
+    </h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Evaluation Criteria</th>
+                <th>Maximum Marks</th>
+                <th>Marks Obtained</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Django Installation</td>
+                <td>1</td>
+                <td>
+                    <strong>{{ student.django_installation }}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Template Usage</td>
+                <td>1</td>
+                <td>
+                    <strong>{{ student.template_usage }}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Model and Views</td>
+                <td>2</td>
+                <td>
+                    <strong>{{ student.model_and_views }}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Output</td>
+                <td>1</td>
+                <td>
+                    <strong>{{ student.output }}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>5</strong></td>
+                <td>
+                    <strong>{{ student.total_marks }}/5</strong>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div style="margin-top:25px;">
+        <strong>Percentage:</strong>
+        {{ student.percentage }}%
+    </div>
+
+</div>
+
+{% endblock %}
